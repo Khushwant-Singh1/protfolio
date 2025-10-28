@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@400;700&family=Permanent+Marker&display=swap');
+@import "tailwindcss";
+
+/* CSS Variables */
+:root {
+  --notebook-white: #FFFAF0;
+  --deep-pink: #D84880;
+  --lime-green: #C4DB5D;
+  --sketch-black: #000000;
+}
+
+/* Base Styles */
+body {
+  background: var(--notebook-white);
+  color: var(--sketch-black);
+  font-family: 'Caveat', cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Sketch Background */
+.sketch-bg {
+  background: linear-gradient(to bottom, transparent 31px, rgba(0, 0, 0, 0.03) 31px, rgba(0, 0, 0, 0.03) 32px);
+  background-size: 100% 32px;
+}
+
+.sketch-bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 80px;
+  width: 2px;
+  height: 100%;
+  background: #D84880;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* Font Classes */
+.font-sketch-title {
+  font-family: 'Permanent Marker', cursive;
+  line-height: 1.2;
+}
+
+.font-sketch-marker {
+  font-family: 'Architects Daughter', cursive;
+}
+
+.font-sketch-body {
+  font-family: 'Caveat', cursive;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Sketch Elements */
+.sketch-border {
+  border: 3px solid var(--sketch-black);
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  background: white;
+}
+
+.sketch-button {
+  background: var(--deep-pink);
+  color: white;
+  border: 3px solid var(--sketch-black);
+  padding: 14px 32px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 18px;
+  transform: rotate(-1deg);
+  box-shadow: 4px 4px 0px var(--sketch-black);
+  transition: all 0.2s ease;
+}
+
+.sketch-button:hover {
+  transform: rotate(0deg) translateY(-2px);
+  box-shadow: 6px 6px 0px var(--sketch-black);
+}
+
+.sketch-button:active {
+  transform: translateY(2px);
+  box-shadow: 2px 2px 0px var(--sketch-black);
+}
+
+/* Doodle Button (for Contact form) */
+.doodle-btn {
+  background: var(--deep-pink);
+  color: white;
+  border: 3px solid var(--sketch-black);
+  padding: 16px 40px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 20px;
+  transform: rotate(-1deg);
+  box-shadow: 5px 5px 0px var(--sketch-black);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}
+
+.doodle-btn:hover:not(:disabled) {
+  transform: rotate(0deg) translateY(-3px);
+  box-shadow: 7px 7px 0px var(--sketch-black);
+  background: #E05590;
+}
+
+.doodle-btn:active:not(:disabled) {
+  transform: translateY(2px) rotate(-0.5deg);
+  box-shadow: 3px 3px 0px var(--sketch-black);
+}
+
+/* Highlighter Effects */
+.highlight-pink {
+  background: linear-gradient(180deg, transparent 60%, var(--deep-pink) 60%);
+  padding: 0 6px;
+}
+
+.highlight-green {
+  background: linear-gradient(180deg, transparent 60%, var(--lime-green) 60%);
+  padding: 0 6px;
+}
+
+/* Doodle Underline */
+.doodle-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.doodle-underline::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  bottom: -2px;
+  height: 8px;
+  background: var(--lime-green);
+  opacity: 0.5;
+  z-index: -1;
+  transform: rotate(-1deg);
+}
+
+/* Doodle Circle */
+.doodle-circle {
+  position: relative;
+  padding: 8px 16px;
+  display: inline-block;
+}
+
+.doodle-circle::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--sketch-black);
+  border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+  z-index: -1;
+  background: white;
+}
+
+/* Speech Bubble */
+.speech-bubble {
+  position: relative;
+  background: white;
+  border: 3px solid var(--sketch-black);
+  border-radius: 20px;
+  padding: 20px 24px;
+  max-width: 100%;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -18px;
+  left: 30px;
+  border-left: 18px solid transparent;
+  border-top: 18px solid var(--sketch-black);
+}
+
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 33px;
+  border-left: 15px solid transparent;
+  border-top: 15px solid white;
+  z-index: 1;
+}
+
+/* Thought Bubble */
+.thought-bubble {
+  position: relative;
+  background: white;
+  border: 2px solid var(--sketch-black);
+  border-radius: 20px;
+  padding: 12px 20px;
+  font-family: 'Caveat', cursive;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.thought-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 20px;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border: 2px solid var(--sketch-black);
+  border-radius: 50%;
+}
+
+.thought-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 15px;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border: 2px solid var(--sketch-black);
+  border-radius: 50%;
+}
+
+/* Sticky Note */
+.sticky-note {
+  background: linear-gradient(135deg, #FFFACD 0%, #FFF8DC 100%);
+  padding: 24px 28px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #E6E6B8;
+  transform: rotate(-1deg);
+}
+
+.sticky-note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-left: 24px solid transparent;
+  border-bottom: 24px solid transparent;
+  border-top: 24px solid #ddd;
+  border-right: 24px solid #ddd;
+}
+
+/* Polaroid */
+.polaroid {
+  background: white;
+  padding: 12px 12px 40px 12px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ddd;
+  transition: transform 0.3s ease;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.02) !important;
+}
+
+/* Animations */
+.scribble-animate {
+  animation: scribble-shake 3s ease-in-out infinite;
+}
+
+@keyframes scribble-shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(0.5deg); }
+  50% { transform: rotate(-0.5deg); }
+  75% { transform: rotate(0.5deg); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--notebook-white);
+  border-left: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--deep-pink);
+  border-radius: 6px;
+  border: 2px solid var(--notebook-white);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C43670;
+}
+
+/* Selection */
+::selection {
+  background: var(--lime-green);
+  color: var(--sketch-black);
+}
+
+/* Focus Styles */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--lime-green);
+  outline-offset: 2px;
+}
