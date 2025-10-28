@@ -113,57 +113,10 @@ const nextConfig: NextConfig = {
   // Power off X-Powered-By header
   poweredByHeader: false,
 
-  // Optimize webpack bundle
-  webpack: (config, { dev, isServer }) => {
-    // Production optimizations
-    if (!dev && !isServer) {
-      config.optimization = {
-        ...config.optimization,
-        moduleIds: 'deterministic',
-        runtimeChunk: 'single',
-        splitChunks: {
-          chunks: 'all',
-          cacheGroups: {
-            default: false,
-            vendors: false,
-            // Vendor chunk
-            vendor: {
-              name: 'vendor',
-              chunks: 'all',
-              test: /node_modules/,
-              priority: 20,
-            },
-            // Common chunk
-            common: {
-              name: 'common',
-              minChunks: 2,
-              chunks: 'all',
-              priority: 10,
-              reuseExistingChunk: true,
-              enforce: true,
-            },
-            // React & React-DOM
-            react: {
-              name: 'react',
-              test: /[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/,
-              chunks: 'all',
-              priority: 30,
-            },
-            // Icons
-            icons: {
-              name: 'icons',
-              test: /[\\/]node_modules[\\/]react-icons[\\/]/,
-              chunks: 'all',
-              priority: 25,
-            },
-          },
-        },
-      };
-    }
-
-    // Analyze bundle size (set ANALYZE=true in env)
-    if (process.env.ANALYZE === 'true') {
-      // Dynamic import for bundle analyzer
+  // Optimize webpack bundle (only for local development with ANALYZE flag)
+  ...(process.env.ANALYZE === 'true' && {
+    webpack: (config, { isServer }) => {
+      // Analyze bundle size
       try {
         // eslint-disable-next-line @typescript-eslint/no-require-imports
         const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -177,12 +130,11 @@ const nextConfig: NextConfig = {
           })
         );
       } catch {
-        console.log('Bundle analyzer not installed. Run: pnpm add -D webpack-bundle-analyzer');
+        console.log('Bundle analyzer not installed.');
       }
-    }
-
-    return config;
-  },
+      return config;
+    },
+  }),
 };
 
 export default nextConfig;
