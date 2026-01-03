@@ -32,7 +32,7 @@ function Hero() {
         <div className="relative mb-12">
           <div className="sketch-border p-6 inline-flex items-center gap-6 bg-white scribble-animate">
                 <Image
-                  src="https://res.cloudinary.com/dj7ey49h9/image/upload/v1761658810/Gemini_Generated_Image_tyyst2tyyst2tyys_xhirj7.png"
+                  src="https://res.cloudinary.com/dj7ey49h9/image/upload/v1767421465/1765806420133_o4vkvc.png"
                   alt="Khushwant Singh - Full-Stack Developer and AI Automation Specialist"
                   width={160}
                   height={160}
